@@ -13,6 +13,7 @@ set-ssh-key.sh
 Run the following command to startup your servers.
 
 ```shell
+# Run in root of the repo folder
 docker-compose -f .\docker\docker-compose.yml up
 ```
 

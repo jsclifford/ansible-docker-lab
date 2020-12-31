@@ -1,0 +1,11 @@
+# First ansible playbook
+---
+- name: Converte3d ad hoc command example
+  hosts: all
+  become: yes
+  tasks:
+    - name: user exists with UID 4000
+      user:
+        name: newbie
+        uid: 4000
+        state: present
