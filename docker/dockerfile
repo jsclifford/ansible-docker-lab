@@ -1,30 +1,15 @@
 FROM centos:8
-RUN dnf update
-RUN dnf makecache
-RUN dnf -y install epel-release
-RUN dnf makecache
-RUN dnf -y install ansible sudo openssh-clients openssh-server
-RUN groupadd -r demo \
-&&  useradd -r -m -g demo demo
 COPY config/creds.txt /tmp/creds.txt
-RUN cat /tmp/creds.txt | grep demo | chpasswd
-RUN cat /tmp/creds.txt | grep root | chpasswd
-RUN rm /tmp/creds.txt
-RUN usermod -aG wheel demo
-RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N ''
-RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key -N ''
-RUN ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N ''
-RUN ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ''
-RUN rm -rf /run/nologin
-RUN mkdir /root/.ssh && chmod 700 /root/.ssh
 COPY config/sshd_config /etc/ssh/sshd_config
 COPY config/bin/* /usr/local/bin/
-# RUN sed -ri 's/#PermitRootLogin yes/PermitRootLogin yes/g' /etc/ssh/sshd_config
-# RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+COPY dockerfile-script.sh /tmp/dockerfile-script.sh
+COPY config/sshd_config /etc/ssh/sshd_config
+COPY config/bin/* /usr/local/bin/
+RUN  /tmp/dockerfile-script.sh
+RUN  rm /tmp/dockerfile-script.sh
+
 EXPOSE 22
 
 ENTRYPOINT ["ssh-start"]
 CMD ["ssh-server"]
-# CMD ["/usr/sbin/sshd", "-D"]
-# ENTRYPOINT ["/usr/sbin/sshd", "-D"]
 

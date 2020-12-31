@@ -3,6 +3,13 @@ A Docker Lab built for ansible testing of remote servers.  Related to ansible pl
 
 ## Getting Started
 
+Generate your ssh keys for root user. run in WSL bash or shell on OSX/linux
+
+```shell
+cd docker
+set-ssh-key.sh
+```
+
 Run the following command to startup your servers.
 
 ```shell
@@ -13,4 +20,7 @@ In a separate terminal run this command that will get you into the control docke
 
 ``` shell
 docker exec -it docker_control_1 bash
+su demo
+cd ~/ansible
+ansible --version
 ```
