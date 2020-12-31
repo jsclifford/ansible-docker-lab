@@ -1,0 +1,3 @@
+creds.txt
+docker/config/volume-files/authorized_keys*
+docker/config/volume-files/private_keys/*

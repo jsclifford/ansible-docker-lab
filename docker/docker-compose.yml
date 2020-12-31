@@ -1,0 +1,53 @@
+version: '3.4'
+
+networks:
+  ansible:
+
+services:
+  control:
+    hostname: 'control'
+    image: joshcliffordextend/centos-ansible:latest
+    environment: 
+      - ANSIBLE_CONFIG=./ansible.cfg
+    networks:
+      - ansible
+    volumes:
+      - "./../ansible:/home/demo/ansible"
+      - "./config/volume-files:/root/files"
+    entrypoint: ["/bin/bash","-C","/root/files/server-startup.sh","control","&&","tail", "-f", "/dev/null"]  
+
+  web01:
+    hostname: 'web01'
+    image: joshcliffordextend/centos-ansible:latest
+    networks:
+      - ansible
+    volumes:
+      - "./config/volume-files:/root/files"
+    entrypoint: ["/bin/bash","-C","/root/files/server-startup.sh","&&","tail", "-f", "/dev/null"]
+
+  web02:
+    hostname: 'web02'
+    image: joshcliffordextend/centos-ansible:latest
+    networks:
+      - ansible
+    volumes:
+      - "./config/volume-files:/root/files"
+    entrypoint: ["/bin/bash","-C","/root/files/server-startup.sh","&&","tail", "-f", "/dev/null"]
+
+  db01:
+    hostname: 'db01'
+    image: joshcliffordextend/centos-ansible:latest
+    networks:
+      - ansible
+    volumes:
+      - "./config/volume-files:/root/files"
+    entrypoint: ["/bin/bash","-C","/root/files/server-startup.sh","&&","tail", "-f", "/dev/null"]
+
+  db02:
+    hostname: 'db02'
+    image: joshcliffordextend/centos-ansible:latest
+    networks:
+      - ansible
+    volumes:
+      - "./config/volume-files:/root/files"
+    entrypoint: ["/bin/bash","-C","/root/files/server-startup.sh","&&","tail", "-f", "/dev/null"]
