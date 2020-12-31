@@ -1,6 +1,6 @@
 # First ansible playbook
 ---
-- name: Converte3d ad hoc command example
+- name: Converted ad hoc command example
   hosts: all
   become: yes
   tasks:
