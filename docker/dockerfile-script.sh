@@ -12,6 +12,7 @@ cat /tmp/creds.txt | grep demo | chpasswd
 cat /tmp/creds.txt | grep root | chpasswd
 
 usermod -aG wheel demo
+echo "demo         ALL = (ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N ''
 ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key -N ''
