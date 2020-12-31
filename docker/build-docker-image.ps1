@@ -1,3 +1,10 @@
+[CmdletBinding()]
+param (
+    [Parameter()]
+    [string]
+    $DockerHubRepo = "joshcliffordextend"
+)
+
 # Script to create and push docker image. Also script to deploy log analytics workspace to Azure Dashboard
 $ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
 
@@ -17,7 +24,7 @@ if($dockerIsUp -like '*error during connect*'){
 }
 
 echo "Building docker image joshcliffordextend/centos-ansible"
-docker build -t joshcliffordextend/centos-ansible -f "$ScriptDir/dockerfile" "$ScriptDir"
+docker build -t $DockerHubRepo/centos-ansible -f "$ScriptDir/dockerfile" "$ScriptDir"
 
 echo ""
 echo ""

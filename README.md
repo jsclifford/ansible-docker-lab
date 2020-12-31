@@ -24,3 +24,12 @@ su demo
 cd ~/ansible
 ansible --version
 ```
+
+## Making Custom Docker file
+
+To update the docker image with custom passwords you must follow below.
+
+* Copy docker/config/creds-example.txt to docker/config/creds.txt
+* Put passwords for every account after colins. ie. root:mypasswordhere
+* CD to docker folder
+* Run docker build or ```build-docker-image.ps1 -DockerHubRepo "yourrepohere"```
