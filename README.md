@@ -34,3 +34,8 @@ To update the docker image with custom passwords you must follow below.
 * Put passwords for every account after colins. ie. root:mypasswordhere
 * CD to docker folder
 * Run docker build or ```build-docker-image.ps1 -DockerHubRepo "yourrepohere"```
+
+## Gotchas and Tips
+
+* Gotcha: Any ansible service module commands don't work as services daemon isn't installed on the container image
+* Tip: Copy ansible.cfg or all files in ansible/example-lab-files to the root of ansible folder to have a starting point and working configs.
