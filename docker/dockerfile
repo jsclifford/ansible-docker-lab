@@ -30,7 +30,7 @@ RUN rm /tmp/dockerfile-script.sh
 RUN systemctl enable sshd
 
 RUN mkdir -p /root/startup
-COPY config/server-startup-systemd.sh /root/startup/server-startup-systemd.sh
+COPY config/server-startup.sh /root/startup/server-startup.sh
 COPY config/run-at-startup.service /etc/systemd/system/run-at-startup.service
 
 RUN chmod -x /etc/systemd/system/run-at-startup.service && systemctl enable run-at-startup.service

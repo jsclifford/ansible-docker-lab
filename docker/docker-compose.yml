@@ -6,7 +6,7 @@ networks:
 services:
   control:
     hostname: 'control'
-    image: joshcliffordextend/centos-ansible-systemd:latest
+    image: joshcliffordextend/centos-ansible:latest
     environment: 
       - ANSIBLE_CONFIG=./ansible.cfg
     networks:
@@ -21,7 +21,7 @@ services:
 
   web01:
     hostname: 'web01'
-    image: joshcliffordextend/centos-ansible-systemd:latest
+    image: joshcliffordextend/centos-ansible:latest
     networks:
       - ansible
     tmpfs:
@@ -33,7 +33,7 @@ services:
 
   web02:
     hostname: 'web02'
-    image: joshcliffordextend/centos-ansible-systemd:latest
+    image: joshcliffordextend/centos-ansible:latest
     networks:
       - ansible
     tmpfs:
@@ -45,7 +45,7 @@ services:
 
   db01:
     hostname: 'db01'
-    image: joshcliffordextend/centos-ansible-systemd:latest
+    image: joshcliffordextend/centos-ansible:latest
     networks:
       - ansible
     tmpfs:
@@ -57,7 +57,7 @@ services:
 
   db02:
     hostname: 'db02'
-    image: joshcliffordextend/centos-ansible-systemd:latest
+    image: joshcliffordextend/centos-ansible:latest
     networks:
       - ansible
     tmpfs:

@@ -2,8 +2,8 @@
 SCRIPT_NAME=$(basename -- "$0")
 
 set -e
-
-if [ "$1" = 'control' ]
+theHostname=`hostname`
+if [ "$theHostname" == 'control' ]
 then
     if [[ -e "/root/files/private_keys/ansible-docker-lab" ]]; then
         cp /root/files/private_keys/ansible-docker-lab /root/.ssh/id_rsa
@@ -26,4 +26,4 @@ else
     fi
 fi
 
-wall $SCRIPT_NAME: finished minute ${z}
+rm -rf /run/nologin
