@@ -1,0 +1,14 @@
+# First ansible playbook
+# Variable to roll back changes that can be overwritten on cli.
+---
+- name: Converted ad hoc command example
+  hosts: all
+  become: yes
+  vars: 
+    vstate: present
+  tasks:
+    - name: user exists with UID 4000
+      user:
+        name: newbie
+        uid: 4000
+        state: "{{vstate}}"

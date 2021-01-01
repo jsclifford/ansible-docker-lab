@@ -1,0 +1,6 @@
+# variables for the web servers
+username:
+  test:
+    uname: test
+    description: Test User Account
+    password: "{{ secret }}"
