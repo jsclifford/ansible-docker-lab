@@ -14,16 +14,22 @@ Run the following command to startup your servers.
 
 ```shell
 # Run in root of the repo folder
-docker-compose -f .\docker\docker-compose.yml up
+docker-compose -f .\docker\docker-compose.yml up -d
 ```
 
-In a separate terminal run this command that will get you into the control docker container to run your ansible commands.
+Run this command that will get you into the control docker container to run your ansible commands.
 
 ``` shell
 docker exec -it docker_control_1 bash
 su demo
 cd ~/ansible
 ansible --version
+```
+
+When training complete shutdown containers.
+
+```shell
+docker-compose -f .\docker\docker-compose.yml down
 ```
 
 ## Making Custom Docker file
@@ -39,3 +45,4 @@ To update the docker image with custom passwords you must follow below.
 
 * Gotcha: Any ansible service module commands don't work as services daemon isn't installed on the container image
 * Tip: Copy ansible.cfg or all files in ansible/example-lab-files to the root of ansible folder to have a starting point and working configs.
+* Gotcha: Cannot reboot servers due to init not being used.

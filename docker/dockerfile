@@ -1,15 +1,41 @@
-FROM centos:8
+FROM centos:8 AS centos8systemd
+
+ENV container docker
+MAINTAINER Josh Clifford <jsclifford@envistiontechsolutions.com>
+
+RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
+systemd-tmpfiles-setup.service ] || rm -f $i; done); \
+rm -f /lib/systemd/system/multi-user.target.wants/*;\
+rm -f /etc/systemd/system/*.wants/*;\
+rm -f /lib/systemd/system/local-fs.target.wants/*; \
+rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
+rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
+rm -f /lib/systemd/system/basic.target.wants/*;\
+rm -f /lib/systemd/system/anaconda.target.wants/*;
+
+VOLUME [ "/sys/fs/cgroup" ]
+
+CMD ["/usr/sbin/init"]
+
+FROM centos8systemd
+MAINTAINER Josh Clifford <jsclifford@envistiontechsolutions.com>
 COPY config/creds.txt /tmp/creds.txt
 COPY config/sshd_config /etc/ssh/sshd_config
 COPY config/bin/* /usr/local/bin/
 COPY dockerfile-script.sh /tmp/dockerfile-script.sh
 COPY config/sshd_config /etc/ssh/sshd_config
 COPY config/bin/* /usr/local/bin/
-RUN  /tmp/dockerfile-script.sh
-RUN  rm /tmp/dockerfile-script.sh
+RUN /tmp/dockerfile-script.sh
+RUN rm /tmp/dockerfile-script.sh
+RUN systemctl enable sshd
+
+RUN mkdir -p /root/startup
+COPY config/server-startup-systemd.sh /root/startup/server-startup-systemd.sh
+COPY config/run-at-startup.service /etc/systemd/system/run-at-startup.service
+
+RUN chmod -x /etc/systemd/system/run-at-startup.service && systemctl enable run-at-startup.service
 
 EXPOSE 22
 
-ENTRYPOINT ["ssh-start"]
-CMD ["ssh-server"]
+CMD ["/usr/sbin/init"]
 

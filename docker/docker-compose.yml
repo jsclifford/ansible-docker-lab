@@ -6,48 +6,63 @@ networks:
 services:
   control:
     hostname: 'control'
-    image: joshcliffordextend/centos-ansible:latest
+    image: joshcliffordextend/centos-ansible-systemd:latest
     environment: 
       - ANSIBLE_CONFIG=./ansible.cfg
     networks:
       - ansible
+    tmpfs:
+      - /run
+      - /tmp
     volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
       - "./../ansible:/home/demo/ansible"
       - "./config/volume-files:/root/files"
-    entrypoint: ["/bin/bash","-C","/root/files/server-startup.sh","control","&&","tail", "-f", "/dev/null"]  
 
   web01:
     hostname: 'web01'
-    image: joshcliffordextend/centos-ansible:latest
+    image: joshcliffordextend/centos-ansible-systemd:latest
     networks:
       - ansible
+    tmpfs:
+      - /run
+      - /tmp
     volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
       - "./config/volume-files:/root/files"
-    entrypoint: ["/bin/bash","-C","/root/files/server-startup.sh","&&","tail", "-f", "/dev/null"]
 
   web02:
     hostname: 'web02'
-    image: joshcliffordextend/centos-ansible:latest
+    image: joshcliffordextend/centos-ansible-systemd:latest
     networks:
       - ansible
+    tmpfs:
+      - /run
+      - /tmp
     volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
       - "./config/volume-files:/root/files"
-    entrypoint: ["/bin/bash","-C","/root/files/server-startup.sh","&&","tail", "-f", "/dev/null"]
 
   db01:
     hostname: 'db01'
-    image: joshcliffordextend/centos-ansible:latest
+    image: joshcliffordextend/centos-ansible-systemd:latest
     networks:
       - ansible
+    tmpfs:
+      - /run
+      - /tmp
     volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
       - "./config/volume-files:/root/files"
-    entrypoint: ["/bin/bash","-C","/root/files/server-startup.sh","&&","tail", "-f", "/dev/null"]
 
   db02:
     hostname: 'db02'
-    image: joshcliffordextend/centos-ansible:latest
+    image: joshcliffordextend/centos-ansible-systemd:latest
     networks:
       - ansible
+    tmpfs:
+      - /run
+      - /tmp
     volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
       - "./config/volume-files:/root/files"
-    entrypoint: ["/bin/bash","-C","/root/files/server-startup.sh","&&","tail", "-f", "/dev/null"]

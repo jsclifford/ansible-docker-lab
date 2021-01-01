@@ -1,0 +1,16 @@
+FROM centos:8
+MAINTAINER Josh Clifford <jsclifford@envistiontechsolutions.com>
+COPY config/creds.txt /tmp/creds.txt
+COPY config/sshd_config /etc/ssh/sshd_config
+COPY config/bin/* /usr/local/bin/
+COPY dockerfile-script.sh /tmp/dockerfile-script.sh
+COPY config/sshd_config /etc/ssh/sshd_config
+COPY config/bin/* /usr/local/bin/
+RUN  /tmp/dockerfile-script.sh
+RUN  rm /tmp/dockerfile-script.sh
+
+EXPOSE 22
+
+ENTRYPOINT ["ssh-start"]
+CMD ["ssh-server"]
+

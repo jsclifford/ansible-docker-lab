@@ -1,8 +1,8 @@
 [CmdletBinding()]
 param (
-    [Parameter()]
-    [string]
-    $DockerHubRepo = "joshcliffordextend"
+    $DockerHubRepo = "joshcliffordextend",
+    $ImageName = "centos-ansible",
+    $DockerFile = "dockerfile"
 )
 
 # Script to create and push docker image. Also script to deploy log analytics workspace to Azure Dashboard
@@ -24,7 +24,7 @@ if($dockerIsUp -like '*error during connect*'){
 }
 
 echo "Building docker image joshcliffordextend/centos-ansible"
-docker build -t $DockerHubRepo/centos-ansible -f "$ScriptDir/dockerfile" "$ScriptDir"
+docker build -t $DockerHubRepo/$ImageName -f "$ScriptDir/$DockerFile" "$ScriptDir"
 
 echo ""
 echo ""
@@ -33,5 +33,5 @@ echo "Do you want to push the image to Docker Hub?[y|n]"
 $pushImage = Read-Host
 if($pushImage -eq 'y'){
     echo "Pushing docker image to Docker Hub"
-    docker push joshcliffordextend/centos-ansible
+    docker push $DockerHubRepo/$ImageName
 }
