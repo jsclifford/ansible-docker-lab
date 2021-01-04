@@ -28,4 +28,5 @@
 
   handlers:
     - name: Reboot system
-      reboot: 
+      debug:
+        msg: "Psuedo Reboot command running."

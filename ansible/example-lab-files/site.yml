@@ -7,6 +7,11 @@
   vars: 
     vstate: present
   tasks:
+    - name: Setup Ansible Facts
+      setup:
+    - name: Display Ansible Facts
+      debug:
+        var: ansible_facts
     - name: user exists with UID 4000
       user:
         name: newbie

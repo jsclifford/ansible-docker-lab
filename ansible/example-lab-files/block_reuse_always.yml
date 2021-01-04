@@ -27,4 +27,5 @@
           msg: "Update process completed.  See previous output for status.  Rebooting system now."
 
       - name: Reboot the system
-        reboot:
+        debug:
+          msg: "Psuedo Reboot command running."
