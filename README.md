@@ -46,3 +46,4 @@ To update the docker image with custom passwords you must follow below.
 
 * Tip: Copy ansible.cfg or all files in ansible/example-lab-files to the root of ansible folder to have a starting point and working configs.
 * Gotcha: Cannot reboot servers due to being a container.
+* Gotcha: Container /etc/hosts file is crucial to docker and is locked.  Any editing the file with ansible will result in an error.  [Stack Overflow of problem.](https://github.com/William-Yeh/docker-ansible/issues/4#issuecomment-149084120)  
