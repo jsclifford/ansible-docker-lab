@@ -33,36 +33,30 @@ class ExampleInventory(object):
     
     def example_inventory(self):
         return {
-            "group": {
+            "dynamic_hosts": {
                 "hosts": [
                     "web01",
-                    "web02",
-                    "db01",
-                    "db02"
+                    "web02"
                 ],
                 "vars": {
                     "example_variable": "value"
                 }
             },
             "_meta": {
-                "web01": {
-                    "host_specific_var": "web01"
-                },
-                "web02": {
-                    "host_specific_var": "web02"
-                },
-                "db01": {
-                    "host_specific_var": "db01"
-                },
-                "db02": {
-                    "host_specific_var": "db02"
+                "hostvars": {
+                    "web01": {
+                        "host_specific_var": "web01"
+                    },
+                    "web02": {
+                        "host_specific_var": "web02"
+                    }
                 }
             }
         }
     
     # Empty inventory for testing.
     def empty_inventory(self):
-        return {'meta': {'hostvars':{}}}
+        return {'_meta': {'hostvars':{}}}
 
     # Read the command line args passed to the script.
     def read_cli_args(self):
