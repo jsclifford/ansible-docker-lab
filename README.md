@@ -3,7 +3,7 @@ A Docker Lab built for ansible testing of remote servers.  Related to ansible pl
 
 ## Getting Started
 
-Generate your ssh keys for root user. run in WSL bash or shell on OSX/linux
+Generate your ssh keys for root and demo user. Run in WSL bash or shell on OSX/linux
 
 ```shell
 cd docker
@@ -24,6 +24,7 @@ docker exec -it docker_control_1 bash
 su demo
 cd ~/ansible
 ansible --version
+# Notice the location of the config in the ansible version.
 ```
 
 When training complete shutdown containers.
@@ -32,7 +33,7 @@ When training complete shutdown containers.
 docker-compose -f .\docker\docker-compose.yml down
 ```
 
-## Making Custom Docker file
+## Making Custom Docker image
 
 To update the docker image with custom passwords you must follow below.
 
