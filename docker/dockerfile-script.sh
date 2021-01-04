@@ -4,7 +4,7 @@ dnf update
 dnf makecache
 dnf -y install epel-release
 dnf makecache
-dnf -y install ansible sudo openssh-clients openssh-server systemd
+dnf -y install ansible sudo openssh-clients openssh-server systemd tree
 
 groupadd -r demo &&  useradd -r -m -g demo demo
 
