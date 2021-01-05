@@ -4,7 +4,7 @@ dnf update
 dnf makecache
 dnf -y install epel-release
 dnf makecache
-dnf -y install ansible sudo openssh-clients openssh-server systemd tree
+dnf -y install ansible sudo openssh-clients openssh-server systemd tree python3-pip
 
 groupadd -r demo &&  useradd -r -m -g demo demo
 
@@ -38,3 +38,7 @@ chown root:root /var/sftp
 chmod 755 /var/sftp
 
 rm /tmp/creds.txt
+
+# Installing windows hosts modules for communicating to windows hosts with ansible.
+pip3 install pywinrm
+pip3 install pywinrm[credssp]

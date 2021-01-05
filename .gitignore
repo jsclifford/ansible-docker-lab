@@ -4,3 +4,4 @@ docker/config/volume-files/private_keys/*
 ansible/*
 !ansible/example-lab-files
 !ansible/README.md
+ansible-windows
