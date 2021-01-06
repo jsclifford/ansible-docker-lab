@@ -53,9 +53,9 @@ sudo pip install pywinrm[credssp]
 # Or with pip and python3
 sudo apt-get update
 sudo apt-get install python3-pip
-sudo pip3 install ansible
-sudo pip3 install pywinrm
-sudo pip3 install pywinrm[credssp]
+pip3 install ansible
+pip3 install pywinrm
+pip3 install pywinrm[credssp]
 
 # Tell Ansible to use the ansible.config in the current folder.
 export ANSIBLE_CONFIG=./ansible.cfg
