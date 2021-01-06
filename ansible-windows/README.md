@@ -16,7 +16,7 @@ winrm get winrm/config/Service
 wget https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1 -OutFile ConfigureRemotingForAnsible.ps1
 
 # enable CredSSP for WinRM
-.\ConfigureRemotingForAnsible.ps1 -EnableCredSSP -DisableBasicAuth -Verbose
+.\ConfigureRemotingForAnsible.ps1 -EnableCredSSP -DisableBasicAuth -$ForceNewSSLCert -Verbose
 
 # Verify CredSSP is working
 winrm get winrm/config/Service
@@ -46,8 +46,8 @@ sudo apt-get update
 sudo apt-get install software-properties-common
 sudo apt-add-repository ppa:ansible/ansible
 sudo apt-get install ansible python-pip # Uses python2 
-sudo pip install pywinrm
-sudo pip install pywinrm[credssp]
+pip install pywinrm
+pip install pywinrm[credssp]
 
 
 # Or with pip and python3
@@ -59,5 +59,8 @@ pip3 install pywinrm[credssp]
 
 # Tell Ansible to use the ansible.config in the current folder.
 export ANSIBLE_CONFIG=./ansible.cfg
+
+# Install ansible.windows modules
+ansible-galaxy collection install ansible.windows
 
 ```
