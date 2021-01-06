@@ -12,10 +12,12 @@ set-ssh-key.sh
 
 Run the following command to startup your servers.
 
+
 ```shell
 # Run in root of the repo folder
 docker-compose -f .\docker\docker-compose.yml up -d
 ```
+** Note:Right now docker-compose only works in windows powershell. Not tested on MAC OS. Does not mount systemd in WSL on Windows. Thus ssh connections to hosts fail in ansible.
 
 Run this command that will get you into the control docker container to run your ansible commands.
 
