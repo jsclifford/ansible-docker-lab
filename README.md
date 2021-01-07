@@ -1,5 +1,5 @@
 # Ansible Docker Lab
-A Docker Lab built for ansible testing of remote servers.  Related to ansible pluralsight course [Ansible Fundamentals - by Red Hat](https://app.pluralsight.com/library/courses/ansible-fundamentals/table-of-contents).
+A Docker Lab built for ansible testing of remote servers.  Related to ansible pluralsight course [Ansible Fundamentals - by Red Hat](https://app.pluralsight.com/library/courses/ansible-fundamentals/table-of-contents) and [Managing Ansible with Red Hat Ansible Tower - by Red Hat](https://app.pluralsight.com/library/courses/red-hat-ansible-tower-managing/table-of-contents).
 
 ## Getting Started
 
@@ -22,7 +22,7 @@ docker-compose -f .\docker\docker-compose.yml up -d
 Run this command that will get you into the control docker container to run your ansible commands.
 
 ``` shell
-docker exec -it docker_control_1 bash
+docker exec -it control bash
 su demo
 cd ~/ansible
 ansible --version
