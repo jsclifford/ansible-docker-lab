@@ -12,11 +12,7 @@ services:
       - ANSIBLE_CONFIG=./ansible.cfg
     networks:
       - ansible
-    tmpfs:
-      - /run
-      - /tmp
     volumes:
-      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
       - "./../ansible:/home/demo/ansible"
       - "./config/volume-files:/root/files"
 
@@ -26,11 +22,7 @@ services:
     image: joshcliffordextend/centos-ansible:latest
     networks:
       - ansible
-    tmpfs:
-      - /run
-      - /tmp
     volumes:
-      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
       - "./config/volume-files:/root/files"
 
   web02:
@@ -39,11 +31,7 @@ services:
     image: joshcliffordextend/centos-ansible:latest
     networks:
       - ansible
-    tmpfs:
-      - /run
-      - /tmp
     volumes:
-      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
       - "./config/volume-files:/root/files"
 
   db01:
@@ -52,11 +40,7 @@ services:
     image: joshcliffordextend/centos-ansible:latest
     networks:
       - ansible
-    tmpfs:
-      - /run
-      - /tmp
     volumes:
-      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
       - "./config/volume-files:/root/files"
 
   db02:
@@ -65,9 +49,5 @@ services:
     image: joshcliffordextend/centos-ansible:latest
     networks:
       - ansible
-    tmpfs:
-      - /run
-      - /tmp
     volumes:
-      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
       - "./config/volume-files:/root/files"

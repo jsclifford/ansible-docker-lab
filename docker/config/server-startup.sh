@@ -27,3 +27,5 @@ else
 fi
 
 rm -rf /run/nologin
+
+/usr/sbin/sshd -D
